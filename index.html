@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Recap ES5</title>
+
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="shower-ribbon/styles/screen-16x10.css">
+	<style media="screen">
+
+	</style>
+</head>
+<body class="shower list">
+
+
+	<header class="caption">
+		<h1>Recap ES5</h1>
+	</header>
+	<section class="slide">
+		<h2 class="shout">Recap ES5</h2>
+	</section>
+
+	<section class="slide">
+		<h2>ES5</h2>
+		<ul>
+			<li>вышел в 2009</li>
+			<li>поддержка 97,55%</li>
+			<li>Strict mode</li>
+			<li>native JSON</li>
+			<li>Array methods</li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>Типы данных в ES5</h2>
+		<ul>
+			<li>string</li>
+			<li>number</li>
+			<li>boolean</li>
+			<li>null</li>
+			<li>undefined</li>
+			<li>object</li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>Функции</h2>
+		<div>Функции объявления</div>
+		<code>function myFunc () {...} <span class="comment">// function declaration</span></code>
+		<br /><br />
+		<div>Функции выражения</div>
+		<code>var myFunc =  function () {...}<span class="comment">// function expression</span></code>
+	</section>
+
+	<section class="slide">
+		<h2>Функции</h2>
+		<pre>
+			<code>var myFunc = new Function('a, b', 'console.log(a + b);');</code>
+			<code>myFunc('Hello', ' world');</code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Функции</h2>
+		<pre>
+			<code>var myFunc = <mark>new Function</mark>('a, b', 'console.log(a + b);');</code>
+			<code>myFunc('Hello', ' world');</code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Объекты</h2>
+		<ul>
+			<li>Литералы объектов</li>
+			<li><code>Object.create()</code></li>
+			<li>ключевое слово <mark>new</mark></li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>Литералы объектов</h2>
+		<pre>
+			<code>var citizen = {};</code>
+			<code>citizen.name = 'Bob';</code>
+			<code><span class="comment">// или так</span></code>
+			<code>var citizen = {</code>
+			<code>    name: 'Bob',</code>
+			<code>    age: 18</code>
+			<code>};</code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2><code>Object.create</code></h2>
+		<pre>
+			<code>var citizen = Object.create({}, {</code>
+			<code>    name: {</code>
+			<code>        value: 'Bob',</code>
+			<code>        enumerable: true</code>
+			<code>    }</code>
+			<code>});</code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Ключевое слово <mark>New</mark></h2>
+		<pre>
+			<code>function Citizen () { <span class="comment">// Описание конструктора</span></code>
+			<code>    this.name = 'Bob'</code>
+			<code>}</code>
+			<code>var citizen = <mark>new</mark> Citizen();<span class="comment">// Создание объекта</span></code>
+			<code>console.log(citizen); <span class="comment">// { name: 'Bob' }</span></code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2 class="shout">Прототип</h2>
+	</section>
+
+	<section class="slide">
+		<h2>Прототип</h2>
+		<ul>
+			<li>Объекты наследуются от объектов</li>
+			<li>Связь хранится в <code>[[prototype]]</code></li>
+			<li><code>prototype</code> не <code>[[prototype]]</code></li>
+			<li>Объекты можно объединять в цепочки через прототипы</li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<div>
+			<table>
+				<tr>
+					<td>
+						<h2>Object Человек</h2>
+						<ul>
+							<li>голова: 1</li>
+							<li>шея: 1</li>
+							<li>туловище: 1</li>
+							<li>рука: 2</li>
+							<li>нога: 2</li>
+						</ul>
+					</td>
+					<td>&nbsp;</td>
+				</tr>
+			</table>
+		</div>
+	</section>
+
+	<section class="slide">
+		<div>
+			<table>
+				<tr>
+					<td>
+						<h2>Object Человек</h2>
+						<ul>
+							<li>голова: 1</li>
+							<li>шея: 1</li>
+							<li>туловище: 1</li>
+							<li>рука: 2</li>
+							<li>нога: 2</li>
+						</ul>
+					</td>
+					<td>
+						<h2>Object Bob</h2>
+						<ul>
+							<li>пол: мужской</li>
+							<li>имя: Bob</li>
+							<li>[[Prototype]]: Object Человек</li>
+						</ul>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</section>
+
+	<section class="slide">
+		<div>
+			<center style="margin: -5% 0 0 0;">
+				<h2>Bob</h2>
+				<img src="pictures/man.jpg" width="374" height="461">
+			</center>
+		</div>
+	</section>
+
+	<section class="slide">
+		<div>
+			<table>
+				<tr>
+					<td>
+						<h2>Object Человек</h2>
+						<ul>
+							<li style="color: #b3b3b3;">голова: 1</li>
+							<li style="color: #b3b3b3;">шея: 1</li>
+							<li style="color: #b3b3b3;">туловище: 1</li>
+							<li>рука: 3</li>
+							<li style="color: #b3b3b3;">нога: 2</li>
+						</ul>
+					</td>
+					<td>
+						&nbsp;
+					</td>
+				</tr>
+			</table>
+		</div>
+	</section>
+
+	<section class="slide">
+		<div>
+			<center style="margin: -5% 0 0 0;">
+				<h2>Bob</h2>
+				<img src="pictures/man2.jpg" width="374" height="461">
+			</center>
+		</div>
+	</section>
+
+	<section class="slide">
+		<div>
+			<h2>Bob</h2>
+			<pre>
+	            <code>var bob = {</code>
+	            <code>    gender: 'man',</code>
+	            <code>    name: 'Bob',</code>
+	            <code>    __proto__: human,</code>
+	            <code>}</code>
+	        </pre>
+		</div>
+	</section>
+
+	<section class="slide">
+		<div>
+			<h2>Человек</h2>
+			<pre>
+	            <code>var human = {</code>
+	            <code>    head: 1,</code>
+	            <code>    neck: 1,</code>
+	            <code>    body: 1,</code>
+	            <code>    arm: 3,</code>
+	            <code>    leg: 2,</code>
+	            <code>}</code>
+	        </pre>
+		</div>
+	</section>
+
+	<section class="slide">
+		<h2 class="shout">Prototype Lookup</h2>
+	</section>
+
+	<section class="slide">
+		<pre>
+			<code>console.log(bob.arm); <span class="comment">// 3</span></code>
+			<code>human.leg = 4;</code>
+			<code>console.log(bob.leg); <span class="comment">// 4</span></code>
+			<code>bob.arm = 2;</code>
+			<code>bob.leg = 2;</code>
+			<code>console.log(bob.arm); <span class="comment">// 2</span></code>
+			<code>console.log(bob.leg); <span class="comment">// 2</span></code>
+			<code>human.leg = 5;</code>
+			<code>console.log(bob.leg); <span class="comment">// 2</span></code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<pre>
+			<code><span class="comment">//Как назначить прототип?</span></code>
+			<code>bob.<mark>__proto__</mark> = human;</code>
+			<code>human.isPrototypeOf(bob); <span class="comment">//true</span></code>
+			<code>console.log(bob.age); <span class="comment">//undefined</span></code>
+			<code>human.age = 3.2e9;</code>
+			<code>console.log(bob.age); <span class="comment">//3200000000</span></code>
+		</pre>
+		<center>
+			<h2 class="next" style="color: red;">Не делайте так в реальных проектах</h2>
+		</center>
+	</section>
+
+	<section class="slide">
+		<h2>Прототип в ES5</h2>
+		<br />
+		<ul>
+			<li>Используем <code>Object.create(proto[, propertiesObject])</code></li>
+			<br />
+			<li>Расширяем <code>.prototype</code> конструктора</li>
+		</ul>
+	</section>
+
+
+	<section class="slide">
+		<h2>Strict mode</h2>
+		<code>"use strict";</code> или <code>'use strict';</code>
+		<div><strong>Область объявления:</strong></div>
+		<ol>
+			<li>весь файл, тег <code>&lt;script&gt;</code></li>
+			<li>функция</li>
+		</ol>
+	</section>
+
+	<section class="slide">
+		<h2>Strict mode</h2>
+		<pre class="small">
+			<code>"use strict"; <span class="comment">// Обязательно в самом верху</span></code>
+			<code>var a;</code>
+			<code>a = 1;</code>
+			<code>b = 1;<span class="comment">// ReferenceError!</span></code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Strict mode</h2>
+
+	</section>
+
+
+
+	<div class="progress"></div>
+
+	<script src="shower-core/shower.min.js"></script>
+	<!-- Copyright © 2017 Yours Truly, Famous Inc. -->
+
+</body>
+</html>
