@@ -377,9 +377,8 @@
 
 	<section class="slide">
 		<h2>Область видимости объявления функций</h2>
-		<div><code>strict mode</code></div>
 		<ul>
-			<li>область видимости стала блочной</li>
+			<li>область видимости стала блочной в <code>strict mode</code></li>
 			<li>объявления функций все еще поднимаются в верх области видимости</li>
 		</ul>
 		<pre>
@@ -485,7 +484,18 @@
 			<code>var {name:a, age} = {name: 'Bob', age: 22}</code>
 			<code>console.log(a); <span class="comment">// Bob</span></code>
 		</pre>
-	</section>
+    </section>
+
+    <section class="slide">
+        <h2>Деструктурирующее присваивание</h2>
+        <pre>
+            <code><span class="comment">// Значение по умолчанию</span></code>
+            <code>var {name, gender} = {name: 'Bob', age: 22};</code>
+            <code>console.log(gender); <span class="comment">//undefined</span></code>
+            <code>var {name, gender='male'} = {name: 'Bob', age: 22};</code>
+            <code>console.log(gender); <span class="comment">//male</span></code>
+        </pre>
+    </section>
 
 	<section class="slide">
 		<h2>Глубже</h2>
@@ -653,13 +663,17 @@
         <pre>
             <code>var name = 'Bob';</code>
             <code>var mr = 'mr.';</code>
-            <code>function tag(str, ...param) {</code>
-            <code>    return str.reduce((acc, current, index) => {</code>
-            <code>        return acc + param[index - 1] + current;</code>
+            <code>function <mark>tag</mark>(str, ...param) {</code>
+            <code>    return str.reduce((prev, current, index) => {</code>
+            <code>        return prev + param[index - 1] + current;</code>
             <code>    });</code>
             <code>}</code>
-            <code>var res = tag`Hello, ${mr} ${name}`;</code>
+            <code>var res = <mark>tag</mark> `Hello, ${mr} ${name}`;</code>
         </pre>
+    </section>
+
+    <section class="slide">
+        <h2 class="shout">Спасибо!</h2>
     </section>
 
 
