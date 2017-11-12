@@ -276,7 +276,8 @@
 			<code>console.log(bob.age); <span class="comment">//3200000000</span></code>
 		</pre>
 		<center>
-			<h2 class="next" style="color: red;">Не делайте так в реальных проектах</h2>
+        <h2 class="next" style="color: red;"><mark>__proto__</mark> в ES5 было опасным</h2>
+
 		</center>
 	</section>
 
@@ -427,7 +428,7 @@
 			<code>var controller = {</code>
 			<code>    do: function(...) {</code>
 			<code>        btn.addEventListener('click', function(){</code>
-			<code>            console.log(<mark>this</mark>); <span class="comment">//this -> Event</span></code>
+			<code>            console.log(<mark>this</mark>); <span class="comment">//this -> btn</span></code>
 			<code>        });</code>
 			<code>    }</code>
 			<code>};</code>
@@ -499,6 +500,171 @@
 			<code>console.log(name, age) <span class="comment">// Bill 70</span></code>
 		</pre>
 	</section>
+
+	<section class="slide">
+		<h2>Расширения объектных литералов</h2>
+		<ul>
+			<li>краткие свойства</li>
+			<li>краткие методы</li>
+			<li>вычисляемые свойства</li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>Краткие свойства</h2>
+		<pre>
+			<code>var name = 'Bob';</code>
+			<code>var foo = {</code>
+			<code>    name: name</code>
+			<code>};</code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Краткие свойства</h2>
+		<pre>
+			<code>var name = 'Bob';</code>
+			<code>var foo = {</code>
+			<code>    name</code>
+			<code>};</code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Краткие методы</h2>
+		<pre>
+			<code>var foo = {</code>
+			<code>    baz: function() {</code>
+			<code>        //...</code>
+			<code>    }</code>
+			<code>};</code>
+			<code>foo.baz();</code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Краткие методы</h2>
+		<pre>
+				<code>var foo = {</code>
+				<code>    baz() {</code>
+				<code>        //...</code>
+				<code>    }</code>
+				<code>};</code>
+				<code>foo.baz();</code>
+			</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Ключевое слово <code>super</code></h2>
+		<pre>
+			<code>var bar = { a: 1};</code>
+			<code>var foo = { </code>
+			<code>    baz() {</code>
+			<code>        console.log(super.a);</code>
+			<code>    },</code>
+			<code>    __proto__: bar</code>
+			<code>};</code>
+			<code>foo.baz(); <span class="comment">// 1</span></code>
+		</pre>
+    </section>
+
+    <section class="slide">
+        <h2>Ключевое слово
+            <code>super</code>
+        </h2>
+        <pre>
+            <code>var bar = { a: 1};</code>
+            <code>var foo = { </code>
+            <code>    a: 2,</code>
+            <code>    baz() {</code>
+            <code>        console.log(super.a); <span class="comment">// 1</span></code>
+            <code>    },</code>
+            <code>    __proto__: bar</code>
+            <code>};</code>
+        </pre>
+    </section>
+
+    <section class="slide">
+        <h2>Вычисляемые свойства</h2>
+        <div>В ES5 была возможность получить доступ к вычисляемому имени свойства объекта</div>
+        <pre>
+            <code>var person = {};</code>
+            <code>var field = 'name';</code>
+            <code>person[field] = 'Bob'; <span class="comment">// Bob</span></code>
+        </pre>
+    </section>
+
+    <section class="slide">
+        <h2>Вычисляемые свойства</h2>
+        <div>В ES6 можно делать это внутри литерала</div>
+        <pre>
+            <code>var field = 'name';</code>
+            <code>var person = {</code>
+                <code> [field]: 'Bob'</code>
+            <code>} <span class="comment">//{ name: 'Bob' }</span></code>
+        </pre>
+    </section>
+
+    <section class="slide">
+        <h2>Шаблонные строки</h2>
+        <div>Интерполированные строковые литералы</div>
+        <ul>
+            <li>могут содержать внутри себя переменные и выражения</li>
+            <li>допускают переносы строк</li>
+            <li>переменные и выражения внутри литерала анализируются и вычисляются</li>
+            <li>напоминает самовызывающуюся функцию<br />(Immediately Invoked Function Expression)</li>
+        </ul>
+    </section>
+
+    <section class="slide">
+        <h2>Шаблонные строки</h2>
+        <pre>
+            <code>var str = `Это длинная строка</code>
+            <code>    которую можно перенести на другую</code>
+            <code>    строку`;</code>
+            <code>var name = 'Bob';</code>
+            <code>var greet = `Hello, ${name}`; <span class="comment">// Hello, Bob</span></code>
+        </pre>
+    </section>
+
+    <section class="slide">
+        <h2>Интерполированные выражения</h2>
+        <pre>
+            <code>function upper(str) {</code>
+            <code>    return str.toUpperCase();</code>
+            <code>}</code>
+            <code>var name = "Bob";</code>
+            <code>var greet = `Hello, ${upper( `${name}` )}`; <span class="comment">// Hello, BOB</span></code>
+        </pre>
+    </section>
+
+    <section class="slide">
+        <h2>Тегированные шаблонные строки</h2>
+        <pre>
+            <code>function tag(str, ...param) {</code>
+            <code>    // ...</code>
+            <code>}</code>
+            <code>tag `Hello, ${name}`;</code>
+        </pre>
+    </section>
+
+    <section class="slide">
+        <h2>Тегированные шаблонные строки</h2>
+        <pre>
+            <code>var name = 'Bob';</code>
+            <code>var mr = 'mr.';</code>
+            <code>function tag(str, ...param) {</code>
+            <code>    return str.reduce((acc, current, index) => {</code>
+            <code>        return acc + param[index - 1] + current;</code>
+            <code>    });</code>
+            <code>}</code>
+            <code>var res = tag`Hello, ${mr} ${name}`;</code>
+        </pre>
+    </section>
+
+
+
+
 
 
 
