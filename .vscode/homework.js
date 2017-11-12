@@ -1,38 +1,40 @@
-// Дано
+// Don't modify
 function Cart () {}
 Cart.prototype.add = function (item) {
-  if (!this.goods) {
-    this.goods = []
-  }
-  this.goods.push(item)
-}
+    if (!this.goods) {
+        this.goods = [];
+    }
+    this.goods.push(item);
+};
 
 /**
  * You code here
+ * Item...
+ * UserCart...
  */
 
 // Test
-const cart = new UserCart()
-cart.add(new Item(1, 'Стул', 2000))
-cart.add(new Item(2, 'Стол', 3000))
-cart.add(new Item(3, 'Диван', 4000))
-let amount = cart.amount()
+const cart = new UserCart();
+cart.add(new Item(1, 'Стул', 2000));
+cart.add(new Item(2, 'Стол', 3000));
+cart.add(new Item(3, 'Диван', 4000));
+let amount = cart.amount();
 if (amount === 9000) {
-  console.log('Add done')
+    console.log('Add done');
 } else {
-  console.error('Add error')
+     console.error('Add error');
 }
-cart.updateQnt(3, 10)
-cart.remove(2)
-amount = cart.amount()
+cart.updateQnt(3, 10);
+cart.remove(2);
+amount = cart.amount();
 if (amount === 42000) {
-  console.log('Modify done')
+    console.log('Modify done');
 } else {
-  console.error('Modify error')
+    console.error('Modify error');
 }
-cart.clear()
+cart.clear();
 if (cart.getAll().length === 0) {
-  console.log('Clear done')
+    console.log('Clear done');
 } else {
-  console.error('Clear error')
+    console.error('Clear error');
 }
