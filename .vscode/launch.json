@@ -8,7 +8,7 @@
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
-            "program": "${workspaceFolder}/examples/function.js"
+            "program": "${workspaceFolder}/examples/es6.js"
         }
     ]
 }
