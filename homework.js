@@ -15,9 +15,9 @@ Cart.prototype.add = function (item) {
 
 // Test
 const cart = new UserCart();
-cart.add(new Item(1, 'Стул', 2000));
-cart.add(new Item(2, 'Стол', 3000));
-cart.add(new Item(3, 'Диван', 4000));
+cart.add(new Item(1, 'Сhair', 2000));
+cart.add(new Item(2, 'Desk', 3000));
+cart.add(new Item(3, 'Sofa', 4000));
 let amount = cart.amount();
 if (amount === 9000) {
     console.log('Add done');
