@@ -40,7 +40,6 @@
 // human.arm = 10
 // console.log(bob.arm)
 
-
 // var simple = {
 //   leg: 3
 // }
@@ -50,3 +49,11 @@
 // Human.prototype = simple
 // var h = new Human()
 // console.log(h.leg)
+
+var man = {
+  name: 'Bob',
+  get age() { return this._age + ' y.o.'; },
+  set age(value) { this._age = value; }
+}
+man.age = 10
+console.log(man.age)

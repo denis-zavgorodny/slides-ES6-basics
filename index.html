@@ -107,7 +107,7 @@
 		<h2>Ключевое слово <mark>New</mark></h2>
 		<pre>
 			<code>function Citizen () { <span class="comment">// Описание конструктора</span></code>
-			<code>    this.name = 'Bob'</code>
+			<code>    <mark>this</mark>.name = 'Bob'</code>
 			<code>}</code>
 			<code>var citizen = <mark>new</mark> Citizen();<span class="comment">// Создание объекта</span></code>
 			<code>console.log(citizen); <span class="comment">// { name: 'Bob' }</span></code>
@@ -248,6 +248,11 @@
 	</section>
 
 	<section class="slide">
+		<h2>Prototype Lookup</h2>
+		<center><img height="400" src="pictures/property-lookup.png" alt=""></center>
+	</section>
+
+	<section class="slide">
 		<pre>
 			<code>console.log(bob.arm); <span class="comment">// 3</span></code>
 			<code>human.leg = 4;</code>
@@ -285,6 +290,20 @@
 		</ul>
 	</section>
 
+	<section class="slide">
+		<h2>Методы чтения/записи</h2>
+		<div>В литерале объекта</div>
+		<pre>
+			<code>var man = {</code>
+			<code>    name: 'Bob',</code>
+			<code>    <mark>get</mark> age() {return this._age + 'y.o.';},</code>
+			<code>    <mark>set</mark> age(value) { this._age = value;}</code>
+			<code>    man.age = 70;</code>
+			<code>    console.log(man.age);<span class="comment">//70 y.o.</span></code>
+			<code>};</code>
+		</pre>
+	</section>
+
 
 	<section class="slide">
 		<h2>Strict mode</h2>
@@ -308,8 +327,156 @@
 
 	<section class="slide">
 		<h2>Strict mode</h2>
-
+		<ul>
+			<li>не допускается <code>with</code></li>
+			<li>необходимо объявлять переменные</li>
+			<li>при простом вызове функции в <code>this</code> <code>undefined</code></li>
+			<li>...</li>
+		</ul>
 	</section>
+
+	<section class="slide">
+		<h2 class="shout">ES6 Basics</h2>
+	</section>
+
+	<section class="slide">
+		<h2>Объявления на уровне блоков</h2>
+		<div>блочная область видимости</div>
+		<pre>
+			<code>{</code>
+			<code>    let a = 1;</code>
+			<code>    console.log(a); <span class="comment">//1</span></code>
+			<code>}</code>
+			<code>console.log(a); <span class="comment">//ReferenceError</span></code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Константы</h2>
+		<pre>
+			<code>const a <mark>=</mark> 1;</code>
+			<code>a <mark>=</mark> 2; <span class="comment">//TypeError</span></code>
+			<code>const b <mark>=</mark> {name: 'Bob'};</code>
+			<code>b.name <mark>=</mark> 'Piter';</code>
+			<code>console.log(b.name); <span class="comment">// Piter</span></code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Временная мертвая зона</h2>
+		<pre>
+				<code>{</code>
+				<code>    console.log(a); <span class="comment">undefined</span></code>
+				<code>    console.log(b); <span class="comment">ReferenceError</span></code>
+				<code>    var a;</code>
+				<code>    let b;</code>
+				<code>}</code>
+			</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Область видимости объявления функций</h2>
+		<div><code>strict mode</code></div>
+		<ul>
+			<li>область видимости стала блочной</li>
+			<li>объявления функций все еще поднимаются в верх области видимости</li>
+		</ul>
+		<pre>
+			<code>if(condition) {</code>
+			<code>    function foo() {...}</code>
+			<code>} else {</code>
+			<code>    function foo() {...}</code>
+			<code>}</code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Параметры по умолчанию</h2>
+		<pre>
+			<code>function getGreetUser(<mark>name = 'user', suffix = 'Hello, '</mark>) {</code>
+			<code>    return suffix + name;</code>
+			<code>}</code>
+			<code>getGreetUser('Bob'); <span class="comment">//Hello, Bob</span></code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Стрелочные функции</h2>
+		<pre>
+			<code><span class="comment">// функциональные выражения</span></code>
+			<code>var foo = (x, y) => x + y;</code>
+			<code>var bar = (x, y) => {</code>
+			<code>    return x + y;</code>
+			<code>}</code>
+			<code>var baz = x => x * 2;</code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Стрелочные функции</h2>
+		<ul>
+			<li>новый синтаксис</li>
+			<li>всегда функциональные выражения</li>
+			<li>лексический контекст <mark>this</mark></li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>Контекст стрелочных функций</h2>
+		<pre>
+			<code>var controller = {</code>
+			<code>    do: function(...) {</code>
+			<code>        btn.addEventListener('click', function(){</code>
+			<code>            console.log(<mark>this</mark>); <span class="comment">//this -> Event</span></code>
+			<code>        });</code>
+			<code>    }</code>
+			<code>};</code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Контекст стрелочных функций</h2>
+		<pre>
+			<code>var controller = {</code>
+			<code>    do: function(...) {</code>
+			<code>        btn.addEventListener('click', () => {</code>
+			<code>            console.log(<mark>this</mark>); <span class="comment">//this -> Controller</span></code>
+			<code>        });</code>
+			<code>    }</code>
+			<code>};</code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Spread <code>...</code> Rest</h2>
+		<blockquote>Когда оператор <code>...</code> стоит перед массивом (или любым другим набором
+			доступных для перебора значений) он разделяет массив на отдельные значения</blockquote>
+		<pre>
+			<code>function foo(a, b, c) {</code>
+			<code>    return a + b + c;</code>
+			<code>}</code>
+			<code>foo(...[1, 2, 3]); <span class="comment">// 6</span></code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Spread
+			<code>...</code> Rest</h2>
+		<blockquote>Когда оператор
+			<code>...</code> принимает множественные значения, например, в определении функции,
+			то он собирает аргументы в один массив</blockquote>
+		<pre>
+				<code>function foo(...a) {</code>
+				<code>    return a;</code>
+				<code>}</code>
+				<code>foo(1, 2, 3); <span class="comment">// Array [1, 2, 3]</span></code>
+			</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Деструктурирующее присваивание</h2>
+	</section>
+
 
 
 
