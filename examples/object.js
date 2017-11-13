@@ -50,10 +50,23 @@
 // var h = new Human()
 // console.log(h.leg)
 
-var man = {
-  name: 'Bob',
-  get age() { return this._age + ' y.o.'; },
-  set age(value) { this._age = value; }
-}
-man.age = 10
-console.log(man.age)
+// var man = {
+//   name: 'Bob',
+//   get age() { return this._age + ' y.o.'; },
+//   set age(value) { this._age = value; }
+// }
+// man.age = 10
+// console.log(man.age)
+
+
+// var man = {};
+// Object.defineProperty(man, 'age', {
+//     set: function(value) {
+//         _age = value;
+//     },
+//     get: function() {
+//         return _age;
+//     }
+// });
+// man.age = 1;
+// console.log(man.age);
