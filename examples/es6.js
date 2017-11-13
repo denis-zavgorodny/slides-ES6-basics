@@ -34,13 +34,13 @@
 //     [field]: 'Bob',
 // };
 // console.log(person);
-var name = 'Bob';
-var mr = 'mr.';
-function tag(str, ...param) {
-    return str.reduce((acc, current, index) => {
-        return acc + param[index - 1] + current;
-    });
-}
-var res = tag`Hello, ${mr} ${name}`;
-console.log(res);
+// var name = 'Bob';
+// var mr = 'mr.';
+// function tag(str, ...param) {
+//     return str.reduce((acc, current, index) => {
+//         return acc + param[index - 1] + current;
+//     });
+// }
+// var res = tag`Hello, ${mr} ${name}`;
+// console.log(res);
 

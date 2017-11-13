@@ -179,7 +179,7 @@
 		<div>
 			<center style="margin: -5% 0 0 0;">
 				<h2>Bob</h2>
-				<img src="pictures/man.jpg" width="374" height="461">
+				<img src="pictures/man.jpg?v:1" width="374" height="461">
 			</center>
 		</div>
 	</section>
@@ -210,7 +210,7 @@
 		<div>
 			<center style="margin: -5% 0 0 0;">
 				<h2>Bob</h2>
-				<img src="pictures/man2.jpg" width="374" height="461">
+				<img src="pictures/man2.jpg?v:1" width="374" height="461">
 			</center>
 		</div>
 	</section>
@@ -377,9 +377,8 @@
 
 	<section class="slide">
 		<h2>Область видимости объявления функций</h2>
-		<div><code>strict mode</code></div>
 		<ul>
-			<li>область видимости стала блочной</li>
+			<li>область видимости стала блочной в <code>strict mode</code></li>
 			<li>объявления функций все еще поднимаются в верх области видимости</li>
 		</ul>
 		<pre>
@@ -485,7 +484,18 @@
 			<code>var {name:a, age} = {name: 'Bob', age: 22}</code>
 			<code>console.log(a); <span class="comment">// Bob</span></code>
 		</pre>
-	</section>
+    </section>
+
+    <section class="slide">
+        <h2>Деструктурирующее присваивание</h2>
+        <pre>
+            <code><span class="comment">// Значение по умолчанию</span></code>
+            <code>var {name, gender} = {name: 'Bob', age: 22};</code>
+            <code>console.log(gender); <span class="comment">//undefined</span></code>
+            <code>var {name, gender='male'} = {name: 'Bob', age: 22};</code>
+            <code>console.log(gender); <span class="comment">//male</span></code>
+        </pre>
+    </section>
 
 	<section class="slide">
 		<h2>Глубже</h2>
@@ -653,23 +663,97 @@
         <pre>
             <code>var name = 'Bob';</code>
             <code>var mr = 'mr.';</code>
-            <code>function tag(str, ...param) {</code>
-            <code>    return str.reduce((acc, current, index) => {</code>
-            <code>        return acc + param[index - 1] + current;</code>
+            <code>function <mark>tag</mark>(str, ...param) {</code>
+            <code>    return str.reduce((prev, current, index) => {</code>
+            <code>        return prev + param[index - 1] + current;</code>
             <code>    });</code>
             <code>}</code>
-            <code>var res = tag`Hello, ${mr} ${name}`;</code>
+            <code>var res = <mark>tag</mark> `Hello, ${mr} ${name}`;</code>
         </pre>
     </section>
 
+    <section class="slide">
+        <h2 class="shout">Спасибо!</h2>
+    </section>
 
+    <section class="slide">
+        <h2>Домашнее задание</h2>
+        <div>Дано</div>
+        <pre>
+            <code>function Cart() {};</code>
+            <code>Cart.prototype.add = function (item) {</code>
+            <code>    if (!this.goods) {</code>
+            <code>        this.goods = [];</code>
+            <code>    }</code>
+            <code>    this.goods.push(item);</code>
+            <code>};</code>
+        </pre>
+    </section>
 
+    <section class="slide">
+        <h2>Домашнее задание</h2>
+        <div>Реализовать <a href="https://denis-zavgorodny.github.io/slides-ES6-basics/homework.js?v:2">функционал корзины</a> <code>UserCart</code> с возможностью</div>
+        <ul>
+            <li>добавлять товар в корзину</li>
+            <li>удалять товар из корзины</li>
+            <li>получить товары корзины</li>
+            <li>изменять количество товара в корзине</li>
+            <li>очищать корзину</li>
+            <li>получать суммарную стоимость корзины</li>
+        </ul>
+    </section>
 
+    <section class="slide">
+        <h2>Самостоятельное изучение</h2>
+        <ul>
+            <li><a href="https://goo.gl/ndp8MD">Методы работы с массивами</a></li>
+            <li>Замыкания, области видимости, IIFE
+                <a href="https://learn.javascript.ru/closures">Ссылка 1</a>
+                <a href="https://codeburst.io/javascript-what-the-heck-is-an-immediately-invoked-function-expression-a0ed32b66c18">Ссылка 1</a>
+            </li>
+            <li>
+                <a href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Statements/for...of">Циклы for..of</a>
+            </li>
+            <li>Стрелочные функции
+                (<a href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Functions/Arrow_functions">Arrow functions</a>)
+            </li>
+            <li>Деструктуризация
+                <a href="https://understandinges6.denysdovhan.com/manuscript/05-Destructuring.html">Ссылка 1</a>
+                <a href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment">Ссылка 2</a>
+            </li>
+            <li>Дескрипторы
+                <a href="https://learn.javascript.ru/descriptors-getters-setters">Ссылка 1</a>
+                <a href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Object">Ссылка 2</a>
+                <a href="http://getinstance.info/articles/javascript/attributes-of-object-properties-in-javascript/">Ссылка 3</a>
+            </li>
+            <li><a href="https://understandinges6.denysdovhan.com/manuscript/04-Objects.html">Новые методы работы с объектами</a></li>
+            <li>Наследование и цепочки прототипов
+                <a href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Inheritance_and_the_prototype_chain">Ссылка 1</a>
+                <a href="https://learn.javascript.ru/prototype">Ссылка 2</a>
+            </li>
+        </ul>
+    </section>
 
-
-
-
-
+    <section class="slide">
+        <h2>Спасибо!</h2>
+        <table class="simple-table">
+            <tr>
+                <td>
+                    <p>
+                        <strong>Denis Zavgorodny</strong>
+                        <br /> web technologist, founder of @ChernivtsiJS,
+                        <br />mentor at @NodeSchool Chernivtsi, expert at @Nenology
+                    </p>
+                    <p>
+                        <a href="https://twitter.com/DenisZavgorodny">@DenisZavgorodny</a>
+                    </p>
+                    <p>
+                        <a href="mailto:denis.zavgorodny@gmail.com">denis.zavgorodny@gmail.com</a>
+                    </p>
+                </td>
+            </tr>
+        </table>
+    </section>
 
 
 	<div class="progress"></div>
